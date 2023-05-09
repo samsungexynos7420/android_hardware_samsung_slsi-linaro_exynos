@@ -256,25 +256,6 @@ int gralloc_lock(gralloc_module_t const* module,
         return -EINVAL;
     }
 
-    switch(hnd->format)
-    {
-        case HAL_PIXEL_FORMAT_EXYNOS_ARGB_8888:
-        case HAL_PIXEL_FORMAT_RGBA_8888:
-        case HAL_PIXEL_FORMAT_RGBX_8888:
-        case HAL_PIXEL_FORMAT_BGRA_8888:
-        case HAL_PIXEL_FORMAT_RGB_888:
-        case HAL_PIXEL_FORMAT_RGB_565:
-        case HAL_PIXEL_FORMAT_RAW16:
-        case HAL_PIXEL_FORMAT_RAW_OPAQUE:
-        case HAL_PIXEL_FORMAT_BLOB:
-        case HAL_PIXEL_FORMAT_YCbCr_422_I:
-        case HAL_PIXEL_FORMAT_YV12:
-            break;
-        default:
-            ALOGE("gralloc_lock doesn't support YUV formats. Please use gralloc_lock_ycbcr(). Format: %d", hnd->format);
-            return -EINVAL;
-    }
-
 #ifdef GRALLOC_RANGE_FLUSH
     if(usage & GRALLOC_USAGE_SW_WRITE_MASK)
     {
