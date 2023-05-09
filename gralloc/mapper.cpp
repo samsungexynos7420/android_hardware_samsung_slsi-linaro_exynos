@@ -271,7 +271,7 @@ int gralloc_lock(gralloc_module_t const* module,
         case HAL_PIXEL_FORMAT_YV12:
             break;
         default:
-            ALOGE("gralloc_lock doesn't support YUV formats. Please use gralloc_lock_ycbcr()");
+            ALOGE("gralloc_lock doesn't support YUV formats. Please use gralloc_lock_ycbcr(). Format: %d", hnd->format);
             return -EINVAL;
     }
 
