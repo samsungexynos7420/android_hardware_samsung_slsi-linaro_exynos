@@ -17,7 +17,7 @@
  */
 #include <stdlib.h>
 #include <hardware/hardware.h>
-#include <log/log.h>
+#include <cutils/log.h>
 #include <cutils/properties.h>
 #include <hardware/gralloc.h>
 #include "format_chooser.h"
@@ -25,30 +25,31 @@
 #define FBT (GRALLOC_USAGE_HW_FB | GRALLOC_USAGE_HW_RENDER | GRALLOC_USAGE_HW_COMPOSER)
 #define GENERAL_UI (GRALLOC_USAGE_HW_TEXTURE | GRALLOC_USAGE_HW_COMPOSER)
 
-#ifdef USES_EXYNOS_AFBC_FEATURE
 /* It's for compression check format, width, usage*/
 int check_for_compression(int w, int h, int format, int usage)
 {
+	char value[256];
+	int afbc_prop;
+
+	property_get("ddk.set.afbc", value, "0");
+	afbc_prop = atoi(value);
+
 	switch(format)
 	{
-		/* AFBC disabled for 2 and 3 byte formats because
-		 * 2,3 byte formats + AFBC + 64byte align not yet compatible with DPU.
-		 */
-		case HAL_PIXEL_FORMAT_RGB_565:
-		case HAL_PIXEL_FORMAT_RGB_888:
-			return 0;
 		case HAL_PIXEL_FORMAT_RGBA_8888:
 		case HAL_PIXEL_FORMAT_BGRA_8888:
+		case HAL_PIXEL_FORMAT_RGB_888:
 		case HAL_PIXEL_FORMAT_RGBX_8888:
+		case HAL_PIXEL_FORMAT_RGB_565:
 		case HAL_PIXEL_FORMAT_YV12:
 		{
-			if (usage & GRALLOC_USAGE_PROTECTED)
+			if(afbc_prop == 0)
 				return 0;
-			if ((w <= 192) || (h <= 192)) /* min restriction for performance */
+			if (w % 16 != 0) /* width isn't 16 pixel alignment */
 				return 0;
-			if( (usage & (GRALLOC_USAGE_SW_READ_MASK | GRALLOC_USAGE_SW_WRITE_MASK)) != 0 || usage == 0 )
+			if ((w <= 144) || (h <= 144)) /* min restriction for performance */
 				return 0;
-			if (usage & GRALLOC_USAGE_HW_VIDEO_ENCODER)
+			if ((usage & GRALLOC_USAGE_SW_READ_MASK) == GRALLOC_USAGE_SW_READ_OFTEN)
 				return 0;
 			if ((usage & FBT) || (usage & GENERAL_UI)) /*only support FBT and General UI */
 				return 1;
@@ -57,16 +58,11 @@ int check_for_compression(int w, int h, int format, int usage)
 
 			break;
 		}
+		default:
+			return 0;
 	}
 
-	return 0;
 }
-#else
-int check_for_compression(__unused int w, __unused int h, __unused int format, __unused int usage)
-{
-	return 0;
-}
-#endif
 
 uint64_t gralloc_select_format(int req_format, int usage, int is_compressible)
 {
@@ -96,6 +92,8 @@ uint64_t gralloc_select_format(int req_format, int usage, int is_compressible)
 	}
 #endif
 	new_format |= GRALLOC_ARM_INTFMT_AFBC;
+
+	ALOGD("Returned iterated format: 0x%llX", new_format);
 
 	return new_format;
 }
