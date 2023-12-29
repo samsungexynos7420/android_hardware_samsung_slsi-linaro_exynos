@@ -69,7 +69,6 @@ LOCAL_CFLAGS += -DGRALLOC_MSCL_ALIGN_RESTRICTION
 LOCAL_CFLAGS += -DGRALLOC_10B_ALIGN_RESTRICTION
 endif
 
-include $(TOP)/hardware/samsung_slsi-linaro/exynos/BoardConfigCFlags.mk
 include $(BUILD_SHARED_LIBRARY)
 
 #######################################################################################################
