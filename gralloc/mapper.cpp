@@ -192,7 +192,7 @@ static int gralloc_unmap(buffer_handle_t handle)
 #if TARGET_SOC == exynos7420
         chroma_size = hnd->stride * ALIGN(hnd->vstride / 2, 8) + ext_size;
         if (munmap(INT_TO_PTR(hnd->base2), PRIV_SIZE) < 0) {
-            ALOGE("%s :could not unmap %s %#" PRIx64 " %d", __func__, strerror(errno), hnd->base2, chroma_size);
+            ALOGE("%s :could not unmap %s %#" PRIx64 " %zu", __func__, strerror(errno), hnd->base2, chroma_size);
         }
 #else
         if (munmap(INT_TO_PTR(hnd->base2), hnd->size2) < 0) {
@@ -218,7 +218,7 @@ static int gralloc_unmap(buffer_handle_t handle)
             return 0;
 #if TARGET_SOC == exynos7420
         if (munmap(INT_TO_PTR(hnd->base1), chroma_size) < 0) {
-            ALOGE("%s :could not unmap %s %#" PRIx64 " %d", __func__, strerror(errno), hnd->base1, chroma_size);
+            ALOGE("%s :could not unmap %s %#" PRIx64 " %zu", __func__, strerror(errno), hnd->base1, chroma_size);
         }
 #else
         if (munmap(INT_TO_PTR(hnd->base1), hnd->size1) < 0) {
@@ -232,7 +232,7 @@ static int gralloc_unmap(buffer_handle_t handle)
             return 0;
 #if TARGET_SOC == exynos7420
         if (munmap(INT_TO_PTR(hnd->base2), chroma_size) < 0) {
-            ALOGE("%s :could not unmap %s %#" PRIx64 " %d", __func__, strerror(errno), hnd->base2, chroma_size);
+            ALOGE("%s :could not unmap %s %#" PRIx64 " %zu", __func__, strerror(errno), hnd->base2, chroma_size);
         }
 #else
         if (munmap(INT_TO_PTR(hnd->base2), hnd->size2) < 0) {
