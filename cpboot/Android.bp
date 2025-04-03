@@ -13,8 +13,8 @@ cc_binary {
         "-Wall",
         "-Wno-unused-parameter",
         "-D_GNU_SOURCE",
-    ],
-    
+     ],
+
     srcs: [
         "main.c",
         "util.c",
