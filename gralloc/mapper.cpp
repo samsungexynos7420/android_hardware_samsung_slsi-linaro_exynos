@@ -488,9 +488,10 @@ int gralloc_lock_ycbcr(gralloc_module_t const* module,
         ycbcr->cr = (void *)(((unsigned long)hnd->base) + vOffset);
         break;
 #ifdef HAL_PIXEL_FORMAT_Y8
-#ifdef HAL_PIXEL_FORMAT_Y16
     case HAL_PIXEL_FORMAT_Y8:
+#ifdef HAL_PIXEL_FORMAT_Y16
     case HAL_PIXEL_FORMAT_Y16:
+#endif
         yStride = cStride = hnd->stride;
         uOffset = 0;
         vOffset = 0;
@@ -499,7 +500,6 @@ int gralloc_lock_ycbcr(gralloc_module_t const* module,
         ycbcr->cb = 0;
         ycbcr->cr = 0;
         break;
-#endif
 #endif
 #ifdef HAL_PIXEL_FORMAT_EXYNOS_YCbCr_P010_M
     case HAL_PIXEL_FORMAT_EXYNOS_YCbCr_P010_M:

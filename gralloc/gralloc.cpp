@@ -171,9 +171,11 @@ static int gralloc_alloc_rgb(int ionfd, int w, int h, int format, int usage,
     int is_compressible = check_for_compression(w, h, format, usage);
 
     switch (format) {
+#ifdef HAL_PIXEL_FORMAT_RGBA_FP16
         case HAL_PIXEL_FORMAT_RGBA_FP16:
             bpp = 8;
             break;
+#endif
         case HAL_PIXEL_FORMAT_EXYNOS_ARGB_8888:
         case HAL_PIXEL_FORMAT_RGBA_8888:
         case HAL_PIXEL_FORMAT_RGBX_8888:
