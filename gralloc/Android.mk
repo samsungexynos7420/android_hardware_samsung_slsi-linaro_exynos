@@ -50,9 +50,7 @@ LOCAL_SRC_FILES := 	\
 	mapper.cpp
 
 LOCAL_MODULE := gralloc.$(TARGET_SOC)
-ifeq ($(BOARD_USES_VENDORIMAGE), true)
 LOCAL_PROPRIETARY_MODULE := true
-endif
 
 LOCAL_CFLAGS += -DLOG_TAG=\"gralloc\" -Wno-missing-field-initializers -DMALI_AFBC_GRALLOC=$(MALI_AFBC_GRALLOC)
 
@@ -77,7 +75,7 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libion_exynos libutils android.hardware.graphics.allocator@2.0 android.hardware.graphics.mapper@2.0 \
-						libsync libhardware libhidlbase libion
+						libsync libhardware libhidlbase libhidltransport
 
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/../include \
@@ -88,9 +86,7 @@ LOCAL_C_INCLUDES := \
 LOCAL_SRC_FILES := 	\
 	GrallocWrapper.cpp
 
-ifeq ($(BOARD_USES_VENDORIMAGE), true)
 LOCAL_PROPRIETARY_MODULE := true
-endif
 LOCAL_MODULE := libGrallocWrapper
 
 include $(BUILD_SHARED_LIBRARY)
