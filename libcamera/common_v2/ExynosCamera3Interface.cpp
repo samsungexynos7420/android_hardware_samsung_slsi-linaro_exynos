@@ -121,8 +121,8 @@ done:
         metadata = g_cam_info[cameraId];
         flashAvailable = metadata.find(ANDROID_FLASH_INFO_AVAILABLE);
 
-        ALOGV("INFO(%s): cameraId(%d), flashAvailable.count(%zu), flashAvailable.data.u8[0](%d)",
-            __FUNCTION__, cameraId, flashAvailable.count, flashAvailable.data.u8[0]);
+        ALOGV("INFO(%s[%d]): cameraId(%d), flashAvailable.count(%zu), flashAvailable.data.u8[0](%d)",
+            __FUNCTION__, __LINE__, cameraId, flashAvailable.count, flashAvailable.data.u8[0]);
 
         if (flashAvailable.count == 1 && flashAvailable.data.u8[0] == 1) {
             hasFlash = true;
@@ -735,8 +735,8 @@ done:
         metadata = g_cam_info[cameraId];
         flashAvailable = metadata.find(ANDROID_FLASH_INFO_AVAILABLE);
 
-        ALOGV("INFO(%s): cameraId(%d), flashAvailable.count(%zu), flashAvailable.data.u8[0](%d)",
-            __FUNCTION__, cameraId, flashAvailable.count, flashAvailable.data.u8[0]);
+        ALOGV("INFO(%s[%d]): cameraId(%d), flashAvailable.count(%zu), flashAvailable.data.u8[0](%d)",
+            __FUNCTION__, __LINE__,cameraId, flashAvailable.count, flashAvailable.data.u8[0]);
 
         if (flashAvailable.count == 1 && flashAvailable.data.u8[0] == 1) {
             hasFlash = true;
