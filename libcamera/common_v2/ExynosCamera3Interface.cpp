@@ -654,7 +654,7 @@ static int HAL_camera_device_open(
 
     CameraMetadata metadata;
     camera_metadata_entry flashAvailable;
-    bool hasFlash;
+    bool hasFlash = false;
     char flashFilePath[100] = {'\0',};
 
 #ifdef BOARD_BACK_CAMERA_USES_EXTERNAL_CAMERA
