@@ -121,7 +121,7 @@ done:
         metadata = g_cam_info[cameraId];
         flashAvailable = metadata.find(ANDROID_FLASH_INFO_AVAILABLE);
 
-        ALOGV("INFO(%s): cameraId(%d), flashAvailable.count(%d), flashAvailable.data.u8[0](%d)",
+        ALOGV("INFO(%s): cameraId(%d), flashAvailable.count(%zu), flashAvailable.data.u8[0](%d)",
             __FUNCTION__, cameraId, flashAvailable.count, flashAvailable.data.u8[0]);
 
         if (flashAvailable.count == 1 && flashAvailable.data.u8[0] == 1) {
@@ -141,7 +141,7 @@ done:
 
         fp = fopen(flashFilePath, "w+");
         if (fp == NULL) {
-            ALOGE("ERR(%s[%d]):torch file open fail, ret(%d)", __FUNCTION__, __LINE__, fp);
+            ALOGE("ERR(%s[%d]):torch file open fail, ret(%p)", __FUNCTION__, __LINE__, fp);
         } else {
             fwrite("0", sizeof(char), 1, fp);
             fflush(fp);
@@ -564,7 +564,7 @@ static int HAL_set_torch_mode(const char* camera_id, bool enabled)
 
     fp = fopen(flashFilePath, "w+");
     if (fp == NULL) {
-        ALOGE("ERR(%s[%d]):torch file open(%s) fail, ret(%d)",
+        ALOGE("ERR(%s[%d]):torch file open(%s) fail, ret(%p)",
             __FUNCTION__, __LINE__, flashFilePath, fp);
         return -ENOSYS;
     }
@@ -608,7 +608,7 @@ void *init_func(__unused void *data)
 
     fp = fopen(INIT_MODULE_PATH, "r");
     if (fp == NULL) {
-        ALOGI("INFO(%s[%d]):module init file open fail, ret(%d)", __FUNCTION__, __LINE__, fp);
+        ALOGI("INFO(%s[%d]):module init file open fail, ret(%p)", __FUNCTION__, __LINE__, fp);
         return NULL;
     }
 
@@ -735,7 +735,7 @@ done:
         metadata = g_cam_info[cameraId];
         flashAvailable = metadata.find(ANDROID_FLASH_INFO_AVAILABLE);
 
-        ALOGV("INFO(%s): cameraId(%d), flashAvailable.count(%d), flashAvailable.data.u8[0](%d)",
+        ALOGV("INFO(%s): cameraId(%d), flashAvailable.count(%zu), flashAvailable.data.u8[0](%d)",
             __FUNCTION__, cameraId, flashAvailable.count, flashAvailable.data.u8[0]);
 
         if (flashAvailable.count == 1 && flashAvailable.data.u8[0] == 1) {
@@ -754,7 +754,7 @@ done:
 
         fp = fopen(flashFilePath, "w+");
         if (fp == NULL) {
-            ALOGE("ERR(%s[%d]):torch file open fail, ret(%d)", __FUNCTION__, __LINE__, fp);
+            ALOGE("ERR(%s[%d]):torch file open fail, ret(%p)", __FUNCTION__, __LINE__, fp);
         } else {
             fwrite("0", sizeof(char), 1, fp);
             fflush(fp);
