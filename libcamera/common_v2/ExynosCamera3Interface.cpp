@@ -271,7 +271,7 @@ static int HAL3_camera_device_configure_streams(const struct camera3_device *dev
     return ret;
 }
 
-static int HAL3_camera_device_register_stream_buffers(const struct camera3_device *dev,
+__unused static int HAL3_camera_device_register_stream_buffers(const struct camera3_device *dev,
                                                     const camera3_stream_buffer_set_t *buffer_set)
 {
     ExynosCameraAutoTimer autoTimer(__FUNCTION__);
