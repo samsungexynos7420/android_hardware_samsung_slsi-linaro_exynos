@@ -1151,7 +1151,7 @@ char *HAL_camera_device_get_parameters(struct camera_device *dev)
 }
 
 static void HAL_camera_device_put_parameters(
-        struct camera_device *dev,
+        __unused struct camera_device *dev,
         char *parms)
 {
     ExynosCameraAutoTimer autoTimer(__FUNCTION__);
