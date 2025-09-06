@@ -35,6 +35,7 @@
 
 namespace android {
 
+#ifndef SET_OUTPUT_DEVICE_BASIC_INFO
 #define SET_OUTPUT_DEVICE_BASIC_INFO(perframeInfo) \
     pipeInfo[nodeType].rectInfo = tempRect;\
     pipeInfo[nodeType].bufInfo.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;\
@@ -43,12 +44,17 @@ namespace android {
     pipeInfo[nodeType].perFrameNodeGroupInfo.perFrameLeaderInfo.perframeInfoIndex = perframeInfo;\
     pipeInfo[nodeType].perFrameNodeGroupInfo.perFrameLeaderInfo.perFrameNodeType = PERFRAME_NODE_TYPE_LEADER;\
     pipeInfo[nodeType].perFrameNodeGroupInfo.perFrameLeaderInfo.perFrameVideoID = (m_nodeInfo[INDEX(pipeId)].nodeNum[nodeType] - FIMC_IS_VIDEO_BAS_NUM);
+#endif
+
+#ifndef SET_CAPTURE_DEVICE_BASIC_INFO
 #define SET_CAPTURE_DEVICE_BASIC_INFO() \
     pipeInfo[nodeType].rectInfo = tempRect;\
     pipeInfo[nodeType].bufInfo.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;\
     pipeInfo[nodeType].bufInfo.memory = V4L2_CAMERA_MEMORY_TYPE;\
     pipeInfo[leaderNodeType].perFrameNodeGroupInfo.perFrameCaptureInfo[perFramePos].perFrameNodeType = PERFRAME_NODE_TYPE_CAPTURE;\
     pipeInfo[leaderNodeType].perFrameNodeGroupInfo.perFrameCaptureInfo[perFramePos].perFrameVideoID = (m_nodeInfo[INDEX(pipeId)].nodeNum[nodeType] - FIMC_IS_VIDEO_BAS_NUM);\
+    
+#endif
 
 /* added by 3.2 HAL */
 class ExynosCamera3;
