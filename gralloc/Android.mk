@@ -67,6 +67,7 @@ LOCAL_CFLAGS += -DGRALLOC_MSCL_ALIGN_RESTRICTION
 LOCAL_CFLAGS += -DGRALLOC_10B_ALIGN_RESTRICTION
 endif
 
+include $(TOP)/hardware/samsung_slsi-linaro/exynos/BoardConfigCFlags.mk
 include $(BUILD_SHARED_LIBRARY)
 
 #######################################################################################################
@@ -74,7 +75,7 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libion_exynos libutils android.hardware.graphics.allocator@2.0 android.hardware.graphics.mapper@2.0 \
-						libsync libhardware libhidlbase libhidltransport
+						libsync libhardware libhidlbase libion
 
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/../include \
