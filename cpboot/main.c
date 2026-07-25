@@ -91,7 +91,7 @@ static struct modem_comp m_list[MAX_MODEM_TYPE] = {
 		.node_boot = "/dev/umts_boot0",
 		.node_status = "/dev/umts_boot0",
 		.path_bin = "/dev/block/mmcblk0p7",
-		.path_nv = "/mnt/vendor/efs/nv_data.bin",
+		.path_nv = "/efs/nv_data.bin",
 		.nv_size = (512 << 10),
 	},
 	[SEC_SS222] = {
@@ -105,7 +105,7 @@ static struct modem_comp m_list[MAX_MODEM_TYPE] = {
 		.node_status = "/dev/umts_boot0",
 		.node_dump = "/dev/umts_ramdump0",
 		.path_bin = "/dev/block/mmcblk0p13",
-		.path_nv = "/mnt/vendor/efs/nv_data.bin",
+		.path_nv = "/efs/nv_data.bin",
 		.nv_size = (512 << 10),
 	},
 	[SEC_SS300] = {
@@ -119,7 +119,7 @@ static struct modem_comp m_list[MAX_MODEM_TYPE] = {
 		.node_status = "/dev/umts_boot0",
 		.node_dump = "/dev/umts_ramdump0",
 		.path_bin = "/dev/mbin0",
-		.path_nv = "/mnt/vendor/efs/nv_data.bin",
+		.path_nv = "/efs/nv_data.bin",
 		.nv_size = (512 << 10),
 	},
 	[SEC_SS333] = {
@@ -133,7 +133,7 @@ static struct modem_comp m_list[MAX_MODEM_TYPE] = {
 		.node_status = "/dev/umts_boot0",
 		.node_dump = "/dev/umts_ramdump0",
 		.path_bin = "/dev/mbin0",
-		.path_nv = "/mnt/vendor/efs/nv_data.bin",
+		.path_nv = "/efs/nv_data.bin",
 		.nv_size = (512 << 10),
 	},
 	[IMC_XMM72XX] = {
@@ -168,7 +168,7 @@ static struct modem_comp m_list[MAX_MODEM_TYPE] = {
 		.node_status = "/dev/umts_boot0",
 		.node_dump = "/dev/umts_ramdump0",
 		.path_bin = "/dev/block/mmcblk0p13",
-		.path_nv = "/mnt/vendor/efs/nv_data.bin",
+		.path_nv = "/efs/nv_data.bin",
 		.nv_size = (512 << 10),
 	},
 	[SEC_MODAP_AP] = {
